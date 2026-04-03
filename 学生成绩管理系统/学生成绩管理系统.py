@@ -5,7 +5,7 @@ import subprocess
 def user_login(username, ID):
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         user_power = 0  # 默认权限等级
         cursor = conn.cursor()  # 获取游标
 
@@ -43,7 +43,7 @@ def user_login(username, ID):
 def choice_course(ID):
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute(f"SELECT ArrangementID, CourseID, TeacherID, StartTime, EndTime FROM CourseArrangements WHERE StartTime <= {today} AND EndTime >= {today}")  # 执行sql
         # 获取所有可选的课程安排
@@ -71,7 +71,7 @@ def choice_course(ID):
 def back_course(ID):
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute(f'SELECT ca.ArrangementID, ca.CourseID, ca.TeacherID, ca.StartTime, ca.EndTime FROM CourseArrangements ca JOIN Enrollments e ON ca.ArrangementID = e.ArrangementID WHERE e.StudentID = {ID}')  # 执行sql
         # 获取所有可退选的课程安排
@@ -99,7 +99,7 @@ def back_course(ID):
 def secletone(ID):
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute(f'SELECT  ca.ArrangementID,ca.CourseID, ca.TeacherID FROM CourseArrangements ca JOIN Enrollments e ON ca.ArrangementID = e.ArrangementID WHERE e.StudentID = {ID}')
         print('已选的课程：\n选课ID 课程ID 教师ID')
@@ -120,7 +120,7 @@ def secletone(ID):
 def secletall(ID):
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute(f'SELECT ca.ArrangementID, ca.CourseID, ca.TeacherID, e.Score FROM CourseArrangements ca JOIN Enrollments e ON ca.ArrangementID = e.ArrangementID WHERE e.StudentID = {ID}')
         print('选课ID 课程ID 教师ID 成绩:')
@@ -140,7 +140,7 @@ def secletall(ID):
 # def secletGPA(ID):
 #     try:
 #         # 连接到数据库
-#         conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+#         conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
 #         cursor = conn.cursor()  # 获取游标
 #         cursor.execute(f'SELECT GPA FROM Students WHERE StudentID = {ID}')
 #         print('平均学绩分:')
@@ -160,7 +160,7 @@ def secletall(ID):
 def givescore(ID):
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute(f'SELECT e.StudentID, e.ArrangementID, ca.InTime FROM Enrollments e JOIN CourseArrangements ca ON e.ArrangementID = ca.ArrangementID WHERE ca.TeacherID = {ID} AND {today} <= ca.InTime')
         #获取截至评分时间
@@ -184,7 +184,7 @@ def givescore(ID):
 def scletCA():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute('SELECT ArrangementID, CourseID, TeacherID FROM CourseArrangements')
         print("选课班级ID 课程ID 教师ID")
@@ -205,7 +205,7 @@ def scletCA():
 def secletclass():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute('SELECT ClassID, ClassName FROM Classes')
         print("班级ID 班级名字")
@@ -226,7 +226,7 @@ def secletclass():
 def Statisticsclass():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute('SELECT ArrangementID, CourseID, TeacherID FROM CourseArrangements')
         print("选课班级ID 课程ID 教师ID")
@@ -247,7 +247,7 @@ def Statisticsclass():
 def Statisticsca():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute('SELECT CourseID, CourseName FROM Courses')
         print("课程ID 课程名称")
@@ -268,7 +268,7 @@ def Statisticsca():
 def Statisticscouse():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute('SELECT StudentID, Name FROM Students')
         print('学生ID 学生姓名')
@@ -289,7 +289,7 @@ def Statisticscouse():
 def givestu():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         cursor.execute('SELECT ClassID, ClassName FROM Classes')
         print("班级ID 班级名字")
@@ -314,7 +314,7 @@ def givestu():
 def sturoot():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         while True:
             choice = input('请选择操作:\n1.查询学生表\n2.添加学生\n3.删除学生\n4.退出系统\n')
@@ -347,7 +347,7 @@ def sturoot():
 def teacherroot():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*******', db='end')
         cursor = conn.cursor()  # 获取游标
         while True:
             choice = input('请选择操作:\n1.查询教师表\n2.添加教师\n3.删除教师\n4.退出系统\n')
@@ -379,7 +379,7 @@ def teacherroot():
 def classroot():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='*********', db='end')
         cursor = conn.cursor()  # 获取游标
         while True:
             choice = input('请选择操作:\n1.查询班级表\n2.添加班级\n3.删除班级\n4.退出系统\n')
@@ -411,7 +411,7 @@ def classroot():
 def courseroot():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         while True:
             choice = input('请选择操作:\n1.查询课程表\n2.添加课程\n3.删除课程\n4.退出系统\n')
@@ -444,7 +444,7 @@ def courseroot():
 def Arrangeroot():
     try:
         # 连接到数据库
-        conn = pymysql.connect(host='localhost', user='root', password='lyc672987', db='end')
+        conn = pymysql.connect(host='localhost', user='root', password='********', db='end')
         cursor = conn.cursor()  # 获取游标
         while True:
             choice = input('请选择操作:\n1.查询选课表\n2.添加选课\n3.删除选课\n4.退出系统\n')
@@ -498,7 +498,7 @@ def restore_database(host, user, password, database, input_file):
 # 设置数据库连接信息和备份/恢复文件路径
 host = 'localhost'
 user = 'root'
-password = 'lyc672987'
+password = '*******'
 database = 'end'
 backup_file = r"C:\Users\lyc26\Desktop\end.sql"
 
